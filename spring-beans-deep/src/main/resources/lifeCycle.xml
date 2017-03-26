@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="lifeCycleService" name="lifeCycleService" class="me.springframework.beans.lifeCycle.LifeCycleService"/>
+
+    <bean id="lifeCycleXmlService" class="me.springframework.beans.lifeCycle.LifeCycleXmlService"
+          init-method="initMethod" destroy-method="destoryMethod"/>
+
+    <bean id="lifeCycleAnnotationService" class="me.springframework.beans.lifeCycle.LifeCycleAnnotationService"/>
+
+    <bean id="lifeCycleLazyService" class="me.springframework.beans.lifeCycle.LifeCycleLazyService" lazy-init="true"/>
+    <!-- 开启注解 -->
+    <context:annotation-config/>
+</beans>
