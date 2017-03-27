@@ -2,6 +2,7 @@ package me.springframework.context.inject;
 
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * @author Administrator
@@ -29,5 +30,10 @@ public class SpringInjectTest {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("springAnnotationInject.xml");
         SpringAnnotationService springAnnotationService = context.getBean(SpringAnnotationService.class);
         springAnnotationService.sayHello();
+    }
+
+    @Test
+    public void testAutoWrite(){
+//        AutowiredAnnotationBeanPostProcessor
     }
 }
