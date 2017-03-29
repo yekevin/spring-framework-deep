@@ -12,21 +12,45 @@
     <properties>
         <spring.version>4.3.5.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>1.7.22</slf4j.version>
+        <logback.version>1.1.11</logback.version>
     </properties>
-
-    <repositories>
-        <!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. -->
-        <repository>
-            <id>public</id>
-            <name>Public Repositories</name>
-            <url>http://14.29.84.4:8081/nexus/content/groups/public</url>
-        </repository>
-    </repositories>
 
     <modules>
         <module>spring-beans-deep</module>
         <module>spring-context-deep</module>
     </modules>
+
+    <dependencies>
+        <!-- common -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- logback -->
+        <!--
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        -->
+
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -34,6 +58,12 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-core</artifactId>
                 <version>${spring.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
