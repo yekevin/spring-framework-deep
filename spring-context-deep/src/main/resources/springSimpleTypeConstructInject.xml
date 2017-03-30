@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="simpleTypeConstructService" class="me.springframework.context.inject.SimpleTypeConstructService">
+        <!-- 使用type属性指定了参数的类型则容器会使用类型匹配 -->
+        <!--<constructor-arg type="int" value="28"/>-->
+        <!--<constructor-arg type="java.lang.String" value="Kevin"/>-->
+
+        <!-- 使用index属性显式地指定参数的顺序 -->
+        <!--<constructor-arg index="0" value="28"/>-->
+        <!--<constructor-arg index="1" value="Kevin"/>-->
+
+        <!-- 使用参数的名字来消除起义,配合@ConstructorProperties注解指定参数名称 -->
+        <constructor-arg name="age" value="28"/>
+        <constructor-arg name="name" value="Kevin"/>
+    </bean>
+</beans>

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="springDao" class="me.springframework.context.inject.SpringDao"></bean>
 
     <bean id="springConstructService" class="me.springframework.context.inject.SpringConstructService">
-        <!-- 配置注入属性 -->
         <constructor-arg name="springDao" ref="springDao"></constructor-arg>
     </bean>
+
+    <!-- 使用c命名空间方式 -->
+    <!--<bean class="me.springframework.context.inject.SpringConstructService" c:springDao-ref="springDao"/>-->
+
+    <!-- 使用命名空间索引方式 引用基本变量：c:_0="" c:_1=""  引用对象 c:_0-ref="" c:_1-ref="" -->
+    <!--<bean class="me.springframework.context.inject.SpringConstructService" c:_0-ref="springDao"/>-->
 </beans>

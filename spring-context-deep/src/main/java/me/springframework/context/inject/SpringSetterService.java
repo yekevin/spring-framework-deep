@@ -9,6 +9,10 @@ public class SpringSetterService {
 
     private SpringDao springDao;
 
+    public SpringSetterService() {
+        System.out.println("执行SpringSetterService 无参构造方法");
+    }
+
     public void setSpringDao(SpringDao springDao) {
         System.out.println("执行SpringSetterService setSpringDao方法");
         this.springDao = springDao;

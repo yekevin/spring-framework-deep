@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-autowire="byType">
+       default-autowire="byType" default-lazy-init="false">
     <!--
     spring提供了三种自动装配的方式，实现的方式为在bean标签中添加autowire属性或者在beans中添加全局的default-autowire属性
     1.byName:把Bean的属性具有相同名字的的其他Bean自动装配到Bean的对应属性中
     2.byType:把与Bean的属性具有相同类型的的其他Bean 自动装配Bean的对应属性当中，如果存在多个该类型bean,那么抛出异常,并指出不能使用byType进行自动装配;如果没有找到相匹配的bean,则什么事都不发生
     3.construct:把与Bean的构造器入参具有相同类型的其他Bean自动装配到构造器的对应入参中，如果容器中没有找到与构造器参数类型一致的bean,那么抛出异常
     -->
-    <bean id="springDao" class="me.springframework.context.inject.SpringDao"></bean>
+    <bean id="springDao" class="me.springframework.context.inject.SpringDao">
+    </bean>
 
-    <bean id="springConstructService" class="me.springframework.context.inject.SpringSetterService" autowire="byName"/>
+    <!--
+    默认score="singleton",ApplicationContext会预先实例化singleton
+    当scope="prototype",ApplicationContext将在需要时实例化bean,设置属性
+     -->
+
+    <!-- lazyInit 延迟初始化 当使用时进行实例化-->
+    <bean id="springSetterService" class="me.springframework.context.inject.SpringSetterService" lazy-init="false">
+        <property name="springDao" ref="springDao"/>
+    </bean>
+
+    <!-- 使用p命名空间可以更简洁的表示 -->
+    <!--
+    <bean id="springSetterService" class="me.springframework.context.inject.SpringSetterService"
+          p:springDao-ref="springDao"/>
+    -->
 </beans>
