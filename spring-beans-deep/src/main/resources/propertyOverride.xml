@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+    PropertyOverrideConfigurer 利用属性文件的相关信息，覆盖XML 配置文件中定义。
+    即PropertyOverrideConfigurer 允许XML 配置文件中有默认的配置信息。
+    如果PropertyOverrideConfigurer 的属性文件有对应配置信息，则XML 文件中的配
+    置信息被覆盖:否则，直接使用XML 文件中的配置信息。
+    properties文件格式：
+    beanName.property=value
+    -->
+    <context:property-override location="beanConfig-override.properties"/>
+
+    <!--<bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">-->
+        <!--<property name="locations" value="classpath:beanConfig.properties"/>-->
+    <!--</bean>-->
+
+    <bean id="beanConfig" class="me.springframework.beans.beanFactoryPostProcessor.BeanConfig">
+        <property name="name" value="Admin"/>
+        <property name="age" value="27"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--
+    引入的context命名空间中有专门配置占位符的元素。一个或多个位置可以使用逗号分割开
+    never(0)：从不检查系统属性。
+    fallback(1)：如果指定文件中没有找到才检查系统属性。这是默认值。
+    override(2)：在尝试查找指定的文件前先检查系统属性。这允许系统属性覆盖其它的属性来源。
+    -->
+    <!--<context:property-placeholder location="beanConfig.properties" system-properties-mode="FALLBACK"/>-->
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:beanConfig.properties"/>
+        <property name="properties">
+            <value>
+                custom.strategy.class=me.springframework.beans.beanFactoryPostProcessor.DefaultService
+            </value>
+        </property>
+    </bean>
+
+    <bean class="me.springframework.beans.beanFactoryPostProcessor.BeanConfig">
+        <property name="name" value="${user.username}"/>
+        <property name="age" value="${user.age}"/>
+    </bean>
+
+    <!-- 在运行时指定class -->
+    <bean id="defaultService" class="${custom.strategy.class}"/>
+
+</beans>

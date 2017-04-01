@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<!--
+    注解形式的注入在XML形式之前执行，因此，如果同时使用了两者，则XML形式的注入会覆盖注解形式的注入。
+    annotation-config将隐式注册的后置处理器包括AutowiredAnnotationBeanPostProcessor, CommonAnnotationBeanPostProcessor,
+        PersistenceAnnotationBeanPostProcessor以及前面提到的RequiredAnnotationBeanPostProcessor。
+    annotation-config只能寻找它所定义的上下文中的注解。这意味着，如果在一个WebApplicationContext中为一个DispatcherServlete
+    配置了<context:annotation-config/>，那么它只会检测controller中的@Autowired，而不会检测service
+    -->
+    <context:annotation-config/>
+
+    <bean id="serviceBean" class="me.springframework.beans.annotation.ServiceBean"/>
+    <bean id="targetBean" class="me.springframework.beans.annotation.TargetBean"/>
+
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 当一个bean被定义为abstract，则它只能用做定义子bean的模板 -->
+    <bean id="parentBean" abstract="true">
+        <property name="name" value="Kevin"/>
+        <property name="age" value="28"/>
+    </bean>
+
+    <bean id="childBean" class="me.springframework.beans.inherit.ChildBean" parent="parentBean">
+        <property name="name" value="override"/>
+    </bean>
+
+</beans>
